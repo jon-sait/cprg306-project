@@ -1,0 +1,27 @@
+on:
+  push:
+    branches:
+      - "master"
+  pull_request:
+
+name: "Linting"
+
+jobs:
+  lint:
+    name: "Lints"
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: "Checkout source code"
+        uses: "actions/checkout@v3"
+
+      - name: "Install dependencies"
+        run: |
+          yarn install
+
+      - name: "Check format with prettier"
+        run: |
+          yarn prettier --check .
+
+      - name: "Run ESLint"
+        run: |
+          yarn lint

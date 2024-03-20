@@ -1,0 +1,23 @@
+on:
+  push:
+    branches:
+      - "master"
+  pull_request:
+
+name: "Building"
+
+jobs:
+  build:
+    name: "Build"
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: "Checkout source code"
+        uses: "actions/checkout@v3"
+
+      - name: "Install dependencies"
+        run: |
+          yarn install
+
+      - name: "Build web app"
+        run: |
+          yarn build
